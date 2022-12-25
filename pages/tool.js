@@ -11,12 +11,12 @@ export default function Tool() {
         alert("Coming soon!")
     }
 
-    const quality = (e) => {
+    const handleQuality = (e) => {
         e.preventDefault()
         alert("Coming soon!")
     }
 
-    const file = (e) => {
+    const handleFileType = (e) => {
         e.preventDefault()
         alert("Coming soon!")
     }
@@ -106,13 +106,13 @@ export default function Tool() {
                                     Quality
                                 </p>
                                 <div className="grid grid-cols-3 gap-4 text-center mb-8">
-                                    <button onClick={() => quality()} type="button" className="px-4 py-2 text-xs text-white bg-indigo-900 rounded cursor-pointer whitespace-nowrap">
+                                    <button onClick={(e) => handleQuality(e)} type="button" className="px-4 py-2 text-xs text-white bg-indigo-900 rounded cursor-pointer whitespace-nowrap">
                                         1080 x 1080
                                     </button>
-                                    <button onClick={() => quality()} type="button" className="px-4 py-2 text-xs text-white bg-indigo-900 rounded cursor-pointer whitespace-nowrap">
+                                    <button onClick={(e) => handleQuality(e)} type="button" className="px-4 py-2 text-xs text-white bg-indigo-900 rounded cursor-pointer whitespace-nowrap">
                                         720 x 720
                                     </button>
-                                    <button onClick={() => quality()} type="button" className="px-4 py-2 text-xs text-white bg-indigo-900 rounded cursor-pointer whitespace-nowrap">
+                                    <button onClick={(e) => handleQuality(e)} type="button" className="px-4 py-2 text-xs text-white bg-indigo-900 rounded cursor-pointer whitespace-nowrap">
                                         480 x 480
                                     </button>
                                 </div>
@@ -120,13 +120,13 @@ export default function Tool() {
                                     File
                                 </p>
                                 <div className="grid grid-cols-3 gap-4 text-center">
-                                    <button onClick={() => file()} type="button" className="px-4 py-2 text-white bg-indigo-900 rounded cursor-pointer">
+                                    <button onClick={(e) => handleFileType(e)} type="button" className="px-4 py-2 text-white bg-indigo-900 rounded cursor-pointer">
                                         PNG
                                     </button>
-                                    <button onClick={() => file()} type="button" className="px-4 py-2 text-white bg-indigo-900 rounded">
+                                    <button onClick={(e) => handleFileType(e)} type="button" className="px-4 py-2 text-white bg-indigo-900 rounded">
                                         JPG
                                     </button>
-                                    <button onClick={() => file()} type="button" className="px-4 py-2 text-white bg-indigo-900 rounded">
+                                    <button onClick={(e) => handleFileType(e)} type="button" className="px-4 py-2 text-white bg-indigo-900 rounded">
                                         SVG
                                     </button>
                                 </div>
