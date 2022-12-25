@@ -8,7 +8,7 @@ export default function Tool() {
 
     const submitPortrait = (e) => {
         e.preventDefault()
-        alert("Coming soon!")
+        alert("Coming soon!") 
     }
 
     return (
@@ -61,8 +61,8 @@ export default function Tool() {
                         </svg>
                     </div>
                     <div className="flex flex-col w-[calc(100%-39rem)]">
-                        <div onClick={() => uploadImage()} className="flex justify-center items-center px-3 h-80 border-b border-gray-300 outline-gray-900 -outline-offset-2 hover:bg-gray-100 hover:outline-dotted cursor-pointer transition">
-                            <div className="text-center">
+                        <div className='flex justify-center items-center px-3 h-80 border-b border-gray-300 outline-gray-900 -outline-offset-2 hover:bg-gray-100 hover:outline-dotted hover:cursor-pointer transition'>
+                            <label for='take-picture' className="text-center hover:cursor-pointer">
                                 <h1 className="text-3xl font-semibold text-gray-900 mb-4">
                                     <svg className="inline-block w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z" />
@@ -73,17 +73,20 @@ export default function Tool() {
                                 <p className="text-gray-500">
                                     Use your device camera to take a photo
                                 </p>
-                            </div>
+                                <input id='take-picture' type='file' accept='image/png, image/jpeg' onClick={() => uploadImage()} className="hidden" />
+                            </label>
+                            
                         </div>
-                        <div onClick={() => uploadImage()} className="flex justify-center items-center h-full px-3 outline-gray-900 -outline-offset-2 hover:bg-gray-100 hover:outline-dotted cursor-pointer transition">
-                            <div className="text-center">
+                        <div className="flex justify-center items-center h-full px-3 outline-gray-900 -outline-offset-2 hover:bg-gray-100 hover:outline-dotted hover:cursor-pointer transition">
+                            <label for='upload-picture' className="text-center hover:cursor-pointer">
                                 <h2 className="text-3xl font-semibold text-gray-900 mb-4">
                                     Or upload an image
                                 </h2>
                                 <p className="text-gray-500">
                                     drag and drop an image here to upload automatically
                                 </p>
-                            </div>
+                                <input id='upload-picture' type='file' accept='image/png, image/jpeg' onClick={() => uploadImage()} className="hidden" />
+                            </label>
                         </div>
                     </div>
                     <div className="relative w-96 bg-gray-900">
