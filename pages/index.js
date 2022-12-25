@@ -118,9 +118,9 @@ export default function Home() {
         </section>
         <section className="px-3 border-b border-gray-300 overflow-hidden">
           <div className="grid md:grid-cols-2 items-center gap-12 max-w-screen-xl mx-auto md:pt-20 md:pb-28 pt-6 pb-[5.5rem]">
-            <div className="relative md:order-1 order-2">
-              <div className="absolute left-8 top-8 w-full max-w-[500px] h-[100%] bg-violet-500 -z-10" />
-              <div className="max-w-[500px] z-">
+            <div className="md:p-0 p-10 relative md:order-1 order-2">
+              <div className="absolute md:left-8 left-[4.5rem] md:top-8 top-[4.5rem] w-full md:max-w-[500px] md:w-full max-w-[500px] w-[calc(100%-5rem)] md:h-[100%] h-[calc(100%-5rem)] bg-violet-500 -z-10" />
+              <div className="max-w-[500px]">
                 <Image src="/images/portrait-preview2.jpg" height={2000} width={1811} alt="Portrait preview" />
               </div>
             </div>
@@ -164,27 +164,27 @@ export default function Home() {
               </p>
               <ul className="flex md:flex-row flex-col gap-8">
                 <li>
-                  <Link href="/" classname="font-semibold text-gray-900">
+                  <Link href="/" className="font-semibold text-gray-900">
                     Home
                   </Link>
                 </li>
                 <li>
-                  <Link href="/" classname="font-semibold text-gray-900">
+                  <Link href="/" className="font-semibold text-gray-900">
                     Portrait Tool
                   </Link>
                 </li>
                 <li>
-                  <Link href="/" classname="font-semibold text-gray-900">
+                  <Link href="/" className="font-semibold text-gray-900">
                     How It Works
                   </Link>
                 </li>
                 <li>
-                  <Link href="/" classname="font-semibold text-gray-900">
+                  <Link href="/" className="font-semibold text-gray-900">
                     Blog
                   </Link>
                 </li>
                 <li>
-                  <a href="https://github.com/brandonbyr4/comicfun" target="_blank" rel="noopener noreferrer" classname="font-semibold text-gray-900">
+                  <a href="https://github.com/brandonbyr4/comicfun" target="_blank" rel="noopener noreferrer" className="font-semibold text-gray-900">
                     Github
                   </a>
                 </li>
