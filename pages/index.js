@@ -147,7 +147,7 @@ export default function Home() {
             <p className="text-3xl font-semibold text-gray-900 mb-4">
               ComicFun is open source.
             </p>
-            <p className="text-gray-700 mb-4">
+            <p className="text-gray-500 mb-4">
               Check out the source code, contribute, and leave us a star!
             </p>
             <GitHubButton href="https://github.com/brandonbyr4/comicfun" data-size="large" data-show-count="true" aria-label="Star brandonbyr4/comicfun on GitHub">Star</GitHubButton>
