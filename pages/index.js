@@ -16,7 +16,7 @@ export default function Home() {
         <div>
           <div className="w-full h-[81px]" />
           <header className="fixed w-full h-[81px] top-0 px-3 py-5 border-b border-gray-300 bg-white z-20">
-            <div className="flex justify-between items-center gap-4 max-w-screen-xl">
+            <div className="flex justify-between items-center gap-4 max-w-screen-xl mx-auto">
               <Link href="/" className="text-2xl font-semibold text-gray-900">
                 ComicFun 😂
               </Link>
