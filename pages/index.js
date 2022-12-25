@@ -169,7 +169,7 @@ export default function Home() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/" className="font-semibold text-gray-900">
+                  <Link href="/tool" className="font-semibold text-gray-900">
                     Portrait Tool
                   </Link>
                 </li>

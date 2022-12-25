@@ -75,7 +75,7 @@ export default function Tool() {
                         </svg>
                     </div>
                     <div className="flex flex-col w-[calc(100%-39rem)]" >
-                        <div onClick={() => uploadImage()} className="flex justify-center items-center px-3 h-80 border-b border-gray-300 outline-gray-900 -outline-offset-2 hover:bg-gray-100 hover:outline-dotted cursor-pointer transition">
+                        <label htmlFor="take-picture" className="flex justify-center items-center px-3 h-80 border-b border-gray-300 outline-gray-900 -outline-offset-2 hover:bg-gray-100 hover:outline-dotted cursor-pointer transition">
                             <div className="text-center">
                                 <h1 className="text-3xl font-semibold text-gray-900 mb-4">
                                     <svg className="inline-block w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
@@ -87,9 +87,10 @@ export default function Tool() {
                                 <p className="text-gray-500">
                                     Use your device camera to take a photo
                                 </p>
+                                <input id="take-picture" type="file" accept="image/png, image/jpeg" onChange={() => uploadImage()} className="hidden" />
                             </div>
-                        </div>
-                        <div onClick={() => uploadImage()} className="flex justify-center items-center h-full px-3 outline-gray-900 -outline-offset-2 hover:bg-gray-100 hover:outline-dotted cursor-pointer transition">
+                        </label>
+                        <label htmlFor="upload-picture" className="flex justify-center items-center h-full px-3 outline-gray-900 -outline-offset-2 hover:bg-gray-100 hover:outline-dotted cursor-pointer transition">
                             <div className="text-center">
                                 <h2 className="text-3xl font-semibold text-gray-900 mb-4">
                                     Or upload an image
@@ -97,8 +98,9 @@ export default function Tool() {
                                 <p className="text-gray-500">
                                     drag and drop an image here to upload automatically
                                 </p>
+                                <input id="upload-picture" type="file" accept="image/png, image/jpeg" onChange={() => uploadImage()} className="hidden" />
                             </div>
-                        </div>
+                        </label>
                     </div>
                     <div className="relative w-96 bg-gray-900">
                         <form onSubmit={(e) => submitPortrait(e)} className="flex flex-col justify-between h-full pt-8 pb-40 px-8 space-y-6">
