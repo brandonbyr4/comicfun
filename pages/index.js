@@ -54,7 +54,7 @@ export default function Home() {
         <section className="px-3">
           <div className="grid md:grid-cols-5 items-center gap-12 max-w-screen-xl mx-auto md:py-20 py-14">
             <div className="md:col-span-3">
-              <h1 className="md:text-6xl text-4xl font-semibold text-gray-900 mb-8">
+              <h1 className="lg:text-6xl md:text-5xl text-4xl font-semibold text-gray-900 mb-8">
                 Turn your profile picture into a comic book style portrait
               </h1>
               <p className="md:text-lg text-gray-500 mb-14">
@@ -116,8 +116,8 @@ export default function Home() {
             </ul>
           </div>
         </section>
-        <section className="px-3 border-b border-gray-300 overflow-hidden">
-          <div className="grid md:grid-cols-2 items-center gap-12 max-w-screen-xl mx-auto md:pt-20 md:pb-28 pt-6 pb-[5.5rem]">
+        <section className="px-3 border-b border-gray-300">
+          <div className="grid md:grid-cols-2 items-center md:gap-20 gap-2 max-w-screen-xl mx-auto md:pt-20 md:pb-28 pt-6 pb-[5.5rem]">
             <div className="md:p-0 p-10 relative md:order-1 order-2">
               <div className="absolute md:left-8 left-[4.5rem] md:top-8 top-[4.5rem] w-full md:max-w-[500px] md:w-full max-w-[500px] w-[calc(100%-5rem)] md:h-[100%] h-[calc(100%-5rem)] bg-violet-500 -z-10" />
               <div className="max-w-[500px]">
