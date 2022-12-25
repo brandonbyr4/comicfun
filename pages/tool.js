@@ -12,15 +12,15 @@ export default function Tool() {
     }
 
     return (
-    <div>
-        <Head>
-            <title>ComicFun | Cartoon yourself with JavaScript</title>
-            <meta name="description" content="Turn your profile picture into a comic book style portrait! Cartoonify yourself with JavaScript." />
-            <link rel="icon" href="/favicon.ico" />
-        </Head>
+        <div>
+            <Head>
+                <title>ComicFun | Cartoon yourself with JavaScript</title>
+                <meta name="description" content="Turn your profile picture into a comic book style portrait! Cartoonify yourself with JavaScript." />
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
 
-        <main>
-            <div className="flex w-full h-screen">
+            <main>
+                <div className="flex w-full h-screen">
                     <div className="flex flex-col justify-between w-72 border-r border-gray-300">
                         <div>
                             <div className="px-6 py-3 border-b border-gray-300">
@@ -96,13 +96,13 @@ export default function Tool() {
                                     Quality
                                 </p>
                                 <div className="grid grid-cols-3 gap-4 text-center mb-8">
-                                    <button className="px-4 py-2 text-xs text-white bg-indigo-900 rounded cursor-pointer whitespace-nowrap">
+                                    <button type="button" className="px-4 py-2 text-xs text-white bg-indigo-900 rounded cursor-pointer whitespace-nowrap">
                                         1080 x 1080
                                     </button>
-                                    <button className="px-4 py-2 text-xs text-white bg-indigo-900 rounded cursor-pointer whitespace-nowrap">
+                                    <button type="button" className="px-4 py-2 text-xs text-white bg-indigo-900 rounded cursor-pointer whitespace-nowrap">
                                         720 x 720
                                     </button>
-                                    <button className="px-4 py-2 text-xs text-white bg-indigo-900 rounded cursor-pointer whitespace-nowrap">
+                                    <button type="button" className="px-4 py-2 text-xs text-white bg-indigo-900 rounded cursor-pointer whitespace-nowrap">
                                         480 x 480
                                     </button>
                                 </div>
@@ -110,13 +110,13 @@ export default function Tool() {
                                     File
                                 </p>
                                 <div className="grid grid-cols-3 gap-4 text-center">
-                                    <button className="px-4 py-2 text-white bg-indigo-900 rounded cursor-pointer">
+                                    <button type="button" className="px-4 py-2 text-white bg-indigo-900 rounded cursor-pointer">
                                         PNG
                                     </button>
-                                    <button className="px-4 py-2 text-white bg-indigo-900 rounded">
+                                    <button type="button" className="px-4 py-2 text-white bg-indigo-900 rounded">
                                         JPG
                                     </button>
-                                    <button className="px-4 py-2 text-white bg-indigo-900 rounded">
+                                    <button type="button" className="px-4 py-2 text-white bg-indigo-900 rounded">
                                         SVG
                                     </button>
                                 </div>
