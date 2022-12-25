@@ -14,13 +14,13 @@ export default function Home() {
 
       <main>
         <div>
-          <div className="w-full h-[81px] bg-red-500" />
-          <header className="fixed w-full top-0 px-3 py-5 border-b border-gray-300 bg-white z-20">
-            <div className="flex justify-between items-center gap-4 max-w-screen-xl mx-auto">
+          <div className="w-full h-[81px]" />
+          <header className="fixed w-full h-[81px] top-0 px-3 py-5 border-b border-gray-300 bg-white z-20">
+            <div className="flex justify-between items-center gap-4 max-w-screen-xl">
               <Link href="/" className="text-2xl font-semibold text-gray-900">
                 ComicFun 😂
               </Link>
-              <ul className="flex gap-8">
+              <ul className="md:flex hidden gap-8">
                 <li>
                   <Link href="/tool" className="underline-offset-2 decoration-2 hover:underline">
                     Portrait Tool
@@ -42,19 +42,22 @@ export default function Home() {
                   </a>
                 </li>
               </ul>
-              <Link href="/tool" className="px-4 py-2 bg-violet-500 hover:bg-violet-400 text-white rounded transition">
+              <Link href="/tool" className="md:inline-block hidden px-4 py-2 bg-violet-500 hover:bg-violet-400 text-white rounded transition">
                 Launch Tool
               </Link>
+              <svg className="md:hidden block w-6 h-6 my-2 text-gray-900 cursor-pointer" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+              </svg>
             </div>
           </header>
         </div>
         <section className="px-3">
-          <div className="grid grid-cols-5 items-center gap-8 max-w-screen-xl mx-auto py-20">
+          <div className="grid md:grid-cols-5 items-center gap-12 max-w-screen-xl mx-auto md:py-20 py-14">
             <div className="md:col-span-3">
-              <h1 className="text-6xl font-semibold text-gray-900 mb-8">
+              <h1 className="md:text-6xl text-4xl font-semibold text-gray-900 mb-8">
                 Turn your profile picture into a comic book style portrait
               </h1>
-              <p className="text-lg text-gray-500 mb-14">
+              <p className="md:text-lg text-gray-500 mb-14">
                 Cartoonify yourself for free!  Create a free cartoon profile picture, then easily export the photo to use or share on social media.
               </p>
               <div className="my-4">
@@ -66,17 +69,17 @@ export default function Home() {
                 </Link>
               </div>
             </div>
-            <div className="md:col-span-2">
+            <div className="md:col-span-2 md:p-0 pt-0 px-10">
               <Image src="/images/portrait-preview1.jpg" height={705} width={564} alt="Portrait preview" />
             </div>
           </div>
         </section>
         <section className="px-3">
-          <div className="max-w-screen-xl mx-auto py-20">
-            <h2 className="text-4xl font-semibold text-gray-900 mb-20">
+          <div className="max-w-screen-xl mx-auto md:py-20 pt-6 pb-14">
+            <h2 className="md:text-4xl text-3xl font-semibold text-gray-900 md:mb-20 mb-14">
               <span className="underline underline-offset-[1rem] decoration-4 decoration-violet-500">Cartoonify</span> yourself for free
             </h2>
-            <ul className="grid grid-cols-3 gap-12">
+            <ul className="grid md:grid-cols-3 gap-12">
               <li className="space-y-4">
                 <svg className="p-3 w-12 h-12 text-violet-500 bg-gray-200 rounded-full" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
@@ -113,16 +116,16 @@ export default function Home() {
             </ul>
           </div>
         </section>
-        <section className="px-3">
-          <div className="grid grid-cols-2 items-center gap-8 max-w-screen-xl mx-auto pt-20 pb-28">
-            <div className="relative">
+        <section className="px-3 border-b border-gray-300 overflow-hidden">
+          <div className="grid md:grid-cols-2 items-center gap-12 max-w-screen-xl mx-auto md:pt-20 md:pb-28 pt-6 pb-[5.5rem]">
+            <div className="relative md:order-1 order-2">
               <div className="absolute left-8 top-8 w-full max-w-[500px] h-[100%] bg-violet-500 -z-10" />
-              <div className="max-w-[500px] z-10">
+              <div className="max-w-[500px] z-">
                 <Image src="/images/portrait-preview2.jpg" height={2000} width={1811} alt="Portrait preview" />
               </div>
             </div>
-            <div>
-              <h3 className="text-4xl font-semibold text-gray-900 mb-8">
+            <div className="md:order-2 order-1">
+              <h3 className="md:text-4xl text-3xl font-semibold text-gray-900 mb-8">
                 The perfect portrait for profile pictures, resumes, and more
               </h3>
               <p className="text-gray-500 mb-14">
@@ -139,8 +142,8 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section className="px-3 border-t border-b border-gray-300">
-          <div className="max-w-screen-xl mx-auto py-24 text-center">
+        <section className="px-3 border-b border-gray-300">
+          <div className="max-w-screen-xl mx-auto md:py-24 py-16 text-center">
             <p className="text-3xl font-semibold text-gray-900 mb-4">
               ComicFun is open source.
             </p>
@@ -151,7 +154,7 @@ export default function Home() {
           </div>
         </section>
         <footer className="px-3">
-          <div className="grid grid-cols-2 gap-4 max-w-screen-xl mx-auto py-24">
+          <div className="grid md:grid-cols-2 gap-8 max-w-screen-xl mx-auto md:py-24 py-14">
             <div>
               <p className="text-xl font-semibold text-gray-900 mb-6">
                 ComicFun
@@ -159,7 +162,7 @@ export default function Home() {
               <p className="max-w-sm text-gray-900 mb-6">
                 ComicFun is an open source profile picture generator.  Cartoonify yourself for free.
               </p>
-              <ul className="flex gap-8">
+              <ul className="flex md:flex-row flex-col gap-8">
                 <li>
                   <Link href="/" classname="font-semibold text-gray-900">
                     Home
@@ -181,9 +184,9 @@ export default function Home() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/" classname="font-semibold text-gray-900">
+                  <a href="https://github.com/brandonbyr4/comicfun" target="_blank" rel="noopener noreferrer" classname="font-semibold text-gray-900">
                     Github
-                  </Link>
+                  </a>
                 </li>
               </ul>
             </div>
