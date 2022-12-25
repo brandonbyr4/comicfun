@@ -1,3 +1,4 @@
+const colors = require('tailwindcss/colors')
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -6,6 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {},
+  },
+  variants: {
+    fill: ['hover', 'focus'], // this line does the trick
   },
   plugins: [],
 }
