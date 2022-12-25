@@ -8,7 +8,7 @@ export default function Tool() {
 
     const submitPortrait = (e) => {
         e.preventDefault()
-        alert("Coming soon!")
+        alert("Coming soon!") 
     }
 
     return (
