@@ -30,9 +30,9 @@ export default function Tool() {
 
             <main>
                 <DashboardLayout content={
-                    <div className="flex h-full">
-                        <div className="flex flex-col w-[calc(100%-24rem)]" >
-                            <label htmlFor="take-picture" className="flex justify-center items-center px-3 h-80 border-b border-gray-300 outline-gray-900 -outline-offset-2 hover:bg-gray-100 hover:outline-dotted cursor-pointer transition">
+                    <div className="md:flex md:h-full">
+                        <div className="flex flex-col xl:w-[calc(100%-24rem)] lg:w-[calc(100%-20rem)] md:w-[calc(100%-18rem)] w-full" >
+                            <label htmlFor="take-picture" className="flex justify-center items-center px-3 md:h-80 h-52 border-b border-gray-300 outline-gray-900 -outline-offset-2 hover:bg-gray-100 hover:outline-dotted cursor-pointer transition">
                                 <div className="text-center">
                                     <h1 className="text-3xl font-semibold text-gray-900 mb-4">
                                         <svg className="inline-block w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
@@ -47,7 +47,7 @@ export default function Tool() {
                                     <input id="take-picture" type="file" accept="image/png, image/jpeg" onChange={() => uploadImage()} className="hidden" />
                                 </div>
                             </label>
-                            <label htmlFor="upload-picture" className="flex justify-center items-center h-full px-3 outline-gray-900 -outline-offset-2 hover:bg-gray-100 hover:outline-dotted cursor-pointer transition">
+                            <label htmlFor="upload-picture" className="flex justify-center items-center md:h-full h-72 px-3 outline-gray-900 -outline-offset-2 hover:bg-gray-100 hover:outline-dotted cursor-pointer transition">
                                 <div className="text-center">
                                     <h2 className="text-3xl font-semibold text-gray-900 mb-4">
                                         Or upload an image
@@ -59,8 +59,8 @@ export default function Tool() {
                                 </div>
                             </label>
                         </div>
-                        <div className="relative w-96 bg-gray-900">
-                            <form onSubmit={(e) => submitPortrait(e)} className="flex flex-col justify-between h-full pt-8 pb-40 px-8 space-y-6">
+                        <div className="relative xl:w-96 lg:w-80 md:w-72 w-full bg-gray-900">
+                            <form onSubmit={(e) => submitPortrait(e)} className="flex flex-col justify-between h-full md:pt-8 md:pb-40 py-14 px-8 md:space-y-6 space-y-16">
                                 <h3 className="text-2xl font-semibold text-white">
                                     Save as...
                                 </h3>
@@ -70,13 +70,13 @@ export default function Tool() {
                                     </p>
                                     <div className="grid grid-cols-3 gap-4 text-center mb-8">
                                         <button onClick={(e) => handleQuality(e)} type="button" className="px-4 py-2 text-xs text-white bg-indigo-900 rounded cursor-pointer whitespace-nowrap">
-                                            1080 x 1080
+                                            1080<br className="xl:hidden block" />x 1080
                                         </button>
                                         <button onClick={(e) => handleQuality(e)} type="button" className="px-4 py-2 text-xs text-white bg-indigo-900 rounded cursor-pointer whitespace-nowrap">
-                                            720 x 720
+                                            720<br className="xl:hidden block" />x 720
                                         </button>
                                         <button onClick={(e) => handleQuality(e)} type="button" className="px-4 py-2 text-xs text-white bg-indigo-900 rounded cursor-pointer whitespace-nowrap">
-                                            480 x 480
+                                            480<br className="xl:hidden block" />x 480
                                         </button>
                                     </div>
                                     <p className="text-xl text-white mb-2">
