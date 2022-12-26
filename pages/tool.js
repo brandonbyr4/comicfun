@@ -69,13 +69,13 @@ export default function Tool() {
                                         Quality
                                     </p>
                                     <div className="grid grid-cols-3 gap-4 text-center mb-8">
-                                        <button onClick={(e) => handleQuality(e)} type="button" className="px-4 py-2 text-xs text-white bg-indigo-900 rounded cursor-pointer whitespace-nowrap">
+                                        <button aria-label="1080px resolution" onClick={(e) => handleQuality(e)} type="button" className="px-4 py-2 text-xs text-white bg-indigo-900 rounded cursor-pointer whitespace-nowrap">
                                             1080<br className="xl:hidden block" />x 1080
                                         </button>
-                                        <button onClick={(e) => handleQuality(e)} type="button" className="px-4 py-2 text-xs text-white bg-indigo-900 rounded cursor-pointer whitespace-nowrap">
+                                        <button aria-label="720px resolution" onClick={(e) => handleQuality(e)} type="button" className="px-4 py-2 text-xs text-white bg-indigo-900 rounded cursor-pointer whitespace-nowrap">
                                             720<br className="xl:hidden block" />x 720
                                         </button>
-                                        <button onClick={(e) => handleQuality(e)} type="button" className="px-4 py-2 text-xs text-white bg-indigo-900 rounded cursor-pointer whitespace-nowrap">
+                                        <button aria-label="480px resolution" onClick={(e) => handleQuality(e)} type="button" className="px-4 py-2 text-xs text-white bg-indigo-900 rounded cursor-pointer whitespace-nowrap">
                                             480<br className="xl:hidden block" />x 480
                                         </button>
                                     </div>
@@ -83,20 +83,20 @@ export default function Tool() {
                                         File
                                     </p>
                                     <div className="grid grid-cols-3 gap-4 text-center">
-                                        <button onClick={(e) => handleFileType(e)} type="button" className="px-4 py-2 text-white bg-indigo-900 rounded cursor-pointer">
+                                        <button aria-label="png file type" onClick={(e) => handleFileType(e)} type="button" className="px-4 py-2 text-white bg-indigo-900 rounded cursor-pointer">
                                             PNG
                                         </button>
-                                        <button onClick={(e) => handleFileType(e)} type="button" className="px-4 py-2 text-white bg-indigo-900 rounded">
+                                        <button aria-label="jpg file type" onClick={(e) => handleFileType(e)} type="button" className="px-4 py-2 text-white bg-indigo-900 rounded">
                                             JPG
                                         </button>
-                                        <button onClick={(e) => handleFileType(e)} type="button" className="px-4 py-2 text-white bg-indigo-900 rounded">
+                                        <button aria-label="svg file type" onClick={(e) => handleFileType(e)} type="button" className="px-4 py-2 text-white bg-indigo-900 rounded">
                                             SVG
                                         </button>
                                     </div>
                                 </div>
                                 <div>
                                     <input type="email" placeholder="your email adress..." className="bg-gray-900 text-white border-b border-gray-500 mb-6" required />
-                                    <button type="submit" className="w-full p-3 bg-violet-500 hover:bg-violet-400 text-white text-center rounded transition">
+                                    <button aria-label="Generate Portrait image" type="submit" className="w-full p-3 bg-violet-500 hover:bg-violet-400 text-white text-center rounded transition">
                                         Generate Portrait
                                     </button>
                                 </div>
