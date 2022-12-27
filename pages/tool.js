@@ -3,8 +3,8 @@ import React, {useState}  from 'react'
 import DashboardLayout from '../components/layouts/dashboard-layout'
 
 export default function Tool() {
-    const [quality, setQuality] = useState('')
-    const [fileType, setFileType] = useState('')
+    const [quality, setQuality] = useState(null)
+    const [fileType, setFileType] = useState(null)
 
     const uploadImage = () => {
         alert("Coming soon!")
@@ -74,13 +74,13 @@ export default function Tool() {
                                         Quality
                                     </p>
                                     <div className="grid grid-cols-3 gap-4 text-center mb-8">
-                                        <button onClick={(e) => handleQuality(e)} type="button" value="1080" className="px-4 py-2 text-xs text-white bg-indigo-900 rounded cursor-pointer whitespace-nowrap">
+                                        <button aria-label="1080px resolution" onClick={(e) => handleQuality(e)} type="button" value="1080" className="px-4 py-2 text-xs text-white bg-indigo-900 rounded cursor-pointer whitespace-nowrap">
                                             1080<br className="xl:hidden block" />x 1080
                                         </button>
-                                        <button onClick={(e) => handleQuality(e)} type="button" value="720" className="px-4 py-2 text-xs text-white bg-indigo-900 rounded cursor-pointer whitespace-nowrap">
+                                        <button aria-label="720px resolution" onClick={(e) => handleQuality(e)} type="button" value="720" className="px-4 py-2 text-xs text-white bg-indigo-900 rounded cursor-pointer whitespace-nowrap">
                                             720<br className="xl:hidden block" />x 720
                                         </button>
-                                        <button onClick={(e) => handleQuality(e)} type="button" value="480" className="px-4 py-2 text-xs text-white bg-indigo-900 rounded cursor-pointer whitespace-nowrap">
+                                        <button aria-label="480px resolution" onClick={(e) => handleQuality(e)} type="button" value="480" className="px-4 py-2 text-xs text-white bg-indigo-900 rounded cursor-pointer whitespace-nowrap">
                                             480<br className="xl:hidden block" />x 480
                                         </button>
                                     </div>
@@ -88,13 +88,13 @@ export default function Tool() {
                                         File
                                     </p>
                                     <div className="grid grid-cols-3 gap-4 text-center">
-                                        <button onClick={(e) => handleFileType(e)} type="button" value="PNG" className="px-4 py-2 text-white bg-indigo-900 rounded cursor-pointer">
+                                        <button aria-label="png file type" onClick={(e) => handleFileType(e)} type="button" value="PNG" className="px-4 py-2 text-white bg-indigo-900 rounded cursor-pointer">
                                             PNG
                                         </button>
-                                        <button onClick={(e) => handleFileType(e)} type="button" value="JPG" className="px-4 py-2 text-white bg-indigo-900 rounded">
+                                        <button aria-label="jpg file type" onClick={(e) => handleFileType(e)} type="button" value="JPG" className="px-4 py-2 text-white bg-indigo-900 rounded">
                                             JPG
                                         </button>
-                                        <button onClick={(e) => handleFileType(e)} type="button" value="SVG" className="px-4 py-2 text-white bg-indigo-900 rounded">
+                                        <button aria-label="svg file type" onClick={(e) => handleFileType(e)} type="button" value="SVG" className="px-4 py-2 text-white bg-indigo-900 rounded">
                                             SVG
                                         </button>
                                     </div>
