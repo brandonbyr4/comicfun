@@ -10,12 +10,12 @@
   },
   "dependencies": {
     "@vercel/analytics": "^0.1.6",
-    "clarity-js": "^0.7.1",
     "next": "^13.1.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-github-btn": "^1.4.0",
-    "react-share": "^4.4.1"
+    "react-share": "^4.4.1",
+    "react-webcam": "^7.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.13",

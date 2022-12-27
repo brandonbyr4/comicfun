@@ -1,18 +1,54 @@
 import Head from 'next/head'
-import React, {useState}  from 'react'
+import Image from 'next/image'
+import { useState, useRef }  from 'react'
 import DashboardLayout from '../components/layouts/dashboard-layout'
+import Webcam from 'react-webcam'
 
 export default function Tool() {
+    const [photoBoothMode, setPhotoBoothMode] = useState(false)
+    const [image, setImage] = useState(null)
+    const [imageURL, setImageURL] = useState(null)
     const [quality, setQuality] = useState(null)
     const [fileType, setFileType] = useState(null)
+    const webcamRef = useRef(null)
 
-    const uploadImage = () => {
-        alert("Coming soon!")
+    const takeSelfie = () => {
+        const photoSrc = webcamRef.current.getScreenshot()
+        if(photoSrc) {
+            setImage("xyz")
+            setImageURL(photoSrc)
+            setPhotoBoothMode(false)
+        } else {
+            console.log("Error, camera is loading...")
+        }
+    }
+    
+
+    const uploadToClient = (event) => {
+        if (event.target.files && event.target.files[0]) {
+            const i = event.target.files[0]
+
+            setImage(i)
+            setImageURL(URL.createObjectURL(i))
+        }
     }
 
-    const submitPortrait = (e) => {
+    const uploadToServer = async (e) => {
         e.preventDefault()
         alert("Coming soon!")
+
+        // Send to backend code below here
+        // const body = new FormData()
+        // body.append("file", image)
+        // const response = await fetch("/api/file", {
+        //     method: "POST",
+        //     body
+        // })
+    }
+
+    const chooseAgain = () => {
+        setImage(null)
+        setImageURL(null)
     }
 
     const handleQuality = (e) => {
@@ -36,8 +72,8 @@ export default function Tool() {
             <main>
                 <DashboardLayout content={
                     <div className="md:flex md:h-full">
-                        <div className="flex flex-col xl:w-[calc(100%-24rem)] lg:w-[calc(100%-20rem)] md:w-[calc(100%-18rem)] w-full" >
-                            <label htmlFor="take-picture" className="flex justify-center items-center px-3 md:h-80 h-52 border-b border-gray-300 outline-gray-900 -outline-offset-2 hover:bg-gray-100 hover:outline-dotted cursor-pointer transition">
+                        {!image ? <>{!photoBoothMode ? <div className="flex flex-col xl:w-[calc(100%-24rem)] lg:w-[calc(100%-20rem)] md:w-[calc(100%-18rem)] w-full" >
+                            <label htmlFor="take-photo" className="flex justify-center items-center px-3 md:h-80 h-52 border-b border-gray-300 outline-gray-900 -outline-offset-2 hover:bg-gray-100 hover:outline-dotted cursor-pointer transition">
                                 <div className="text-center">
                                     <h1 className="md:text-3xl text-2xl font-semibold text-gray-900 mb-4">
                                         <svg className="inline-block w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
@@ -49,10 +85,10 @@ export default function Tool() {
                                     <p className="text-gray-500">
                                         Use your device camera to take a photo
                                     </p>
-                                    <input id="take-picture" type="file" accept="image/png, image/jpeg" onChange={() => uploadImage()} className="hidden" />
+                                    <button aria-label="take a photo" id="take-photo" type="button" onClick={() => setPhotoBoothMode(true)} className="hidden">selfie</button>
                                 </div>
                             </label>
-                            <label htmlFor="upload-picture" className="flex justify-center items-center md:h-full h-72 px-3 outline-gray-900 -outline-offset-2 hover:bg-gray-100 hover:outline-dotted cursor-pointer transition">
+                            <label htmlFor="upload-photo" className="flex justify-center items-center md:h-full h-72 px-3 outline-gray-900 -outline-offset-2 hover:bg-gray-100 hover:outline-dotted cursor-pointer transition">
                                 <div className="text-center">
                                     <h2 className="md:text-3xl text-2xl font-semibold text-gray-900 mb-4">
                                         Or upload an image
@@ -60,14 +96,47 @@ export default function Tool() {
                                     <p className="text-gray-500">
                                         drag and drop an image here to upload automatically
                                     </p>
-                                    <input id="upload-picture" type="file" accept="image/png, image/jpeg" onChange={() => uploadImage()} className="hidden" />
+                                    <input id="upload-photo" type="file" accept="image/png, image/jpeg" onChange={uploadToClient} className="hidden" />
                                 </div>
                             </label>
-                        </div>
+                        </div> : <div className="flex flex-col xl:w-[calc(100%-24rem)] lg:w-[calc(100%-20rem)] md:w-[calc(100%-18rem)] w-full overflow-hidden" >
+                            <div className="flex h-full w-full">
+                                <button aria-label="back" onClick={() => setPhotoBoothMode(false)} className="px-4 py-4 bg-white text-gray-900 hover:bg-gray-100 border-r border-gray-300 transition">
+                                    Back
+                                </button>
+                                <button aria-label="back" onClick={() => takeSelfie()} className="w-full px-4 py-4 text-gray-900 hover:bg-gray-100 transition">
+                                    Take Photo
+                                </button>
+                            </div>
+                            <Webcam
+                                audio={false}
+                                height={1540}
+                                ref={webcamRef}
+                                width={1540}
+                                screenshotFormat="image/jpeg"
+                                videoConstraints={{
+                                    width: 1540,
+                                    height: 1540,
+                                    facingMode: 'user'
+                                }}
+                            />
+                        </div>}</> : <div className="flex flex-col xl:w-[calc(100%-24rem)] lg:w-[calc(100%-20rem)] md:w-[calc(100%-18rem)] w-full">
+                            <div className="p-10 h-full">
+                                <h4 className="text-3xl font-semibold text-gray-900 mb-4">
+                                    Image uploaded
+                                </h4>
+                                <button aria-label="choose another photo" type="button" onClick={() => chooseAgain()} className="text-blue-500 underline mb-4">
+                                    Choose another photo
+                                </button>
+                                <div className="max-w-xl">
+                                    <Image src={imageURL} width={1000} height={1000} alt="Image preview" />
+                                </div>
+                            </div>
+                        </div>}
                         <div className="relative xl:w-96 lg:w-80 md:w-72 w-full bg-gray-900">
-                            <form onSubmit={(e) => submitPortrait(e)} className="flex flex-col justify-between h-full md:pt-8 md:pb-40 py-14 px-8 md:space-y-6 space-y-16">
+                            <form onSubmit={(e) => uploadToServer(e)} className="flex flex-col justify-between h-full md:pt-8 md:pb-40 py-14 px-8 md:space-y-6 space-y-16">
                                 <h3 className="text-2xl font-semibold text-white">
-                                    Save as...
+                                    Generate and save
                                 </h3>
                                 <div>
                                     <p className="text-xl text-white mb-2">
