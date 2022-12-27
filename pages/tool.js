@@ -108,7 +108,7 @@ export default function Tool() {
                                     Take Photo
                                 </button>
                             </div>
-                            <div className="h-[fit] pb-2 bg-violet-500">
+                            <div className="md:min-h-fit min-h-[500px] h-[fit] pb-2 bg-violet-500">
                                 <Webcam
                                     audio={false}
                                     height={1540}
