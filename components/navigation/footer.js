@@ -1,14 +1,9 @@
 import Link from 'next/link'
-import { useState } from 'react'
+import { useContext } from 'react'
+import ContextManager from '../../state/context-manager'
 
 export default function Footer () {
-    const [cookiesDisabled, setCookiesDisabled] = useState(null)
-
-    const gdprUnsubscribe = () => {
-        window['ga-disable-GA_MEASUREMENT_ID'] = true
-        setCookiesDisabled(true)
-        alert("Disabled non-essential cookies.")
-    }
+    const { cookiesDisabled, gdprUnsubscribe } = useContext(ContextManager)
 
     return <footer className="px-3">
         <div className="grid md:grid-cols-2 gap-8 max-w-screen-xl mx-auto md:py-24 py-14">
