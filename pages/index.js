@@ -108,7 +108,7 @@ export default function Home() {
               </div>
             </section>
             <section className="px-3 border-b border-gray-300">
-              <div className="max-w-screen-xl mx-auto md:py-24 py-16 text-center">
+              <div className="flex flex-col items-center max-w-screen-xl mx-auto md:py-24 py-16 text-center">
                 <p className="text-3xl font-semibold text-gray-900 mb-4">
                   ComicFun is open source.
                 </p>

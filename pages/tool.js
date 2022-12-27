@@ -108,25 +108,30 @@ export default function Tool() {
                                     Take Photo
                                 </button>
                             </div>
-                            <Webcam
-                                audio={false}
-                                height={1540}
-                                ref={webcamRef}
-                                width={1540}
-                                screenshotFormat="image/jpeg"
-                                videoConstraints={{
-                                    width: 1540,
-                                    height: 1540,
-                                    facingMode: 'user'
-                                }}
-                            />
+                            <div className="h-[fit] pb-2 bg-violet-500">
+                                <Webcam
+                                    audio={false}
+                                    height={1540}
+                                    ref={webcamRef}
+                                    width={1540}
+                                    screenshotFormat="image/jpeg"
+                                    videoConstraints={{
+                                        width: 1540,
+                                        height: 1540,
+                                        facingMode: 'user'
+                                    }}
+                                />
+                            </div>
                         </div>}</> : <div className="flex flex-col xl:w-[calc(100%-24rem)] lg:w-[calc(100%-20rem)] md:w-[calc(100%-18rem)] w-full">
                             <div className="p-10 h-full">
                                 <h4 className="text-3xl font-semibold text-gray-900 mb-4">
                                     Image uploaded
                                 </h4>
-                                <button aria-label="choose another photo" type="button" onClick={() => chooseAgain()} className="text-blue-500 underline mb-4">
-                                    Choose another photo
+                                <button aria-label="choose another photo" type="button" onClick={() => chooseAgain()} className="flex items-center gap-2 text-blue-500 underline mb-4">
+                                    <svg className="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+                                    </svg>
+                                    back
                                 </button>
                                 <div className="max-w-xl">
                                     <Image src={imageURL} width={1000} height={1000} alt="Image preview" />
