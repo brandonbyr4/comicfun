@@ -1,6 +1,6 @@
 # ComicFun
 
-ComicFun is an open source photo app that turns your profile picture into a cartoonified portrait!  it allows you to take a photo, or upload an existing image and transform it into a professional, while fun image.
+ComicFun is an open source photo app that turns your profile picture into a cartoonified portrait!  The app allows you to take a photo, or upload an existing image and transform it into a professional, while fun image.
 
 <img src="https://i.ibb.co/TM9VL1f/Capture.png" alt="Site preview">
 
