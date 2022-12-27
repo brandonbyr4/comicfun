@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { useState, useRef }  from 'react'
+import { useState, useRef, useMemo }  from 'react'
 import DashboardLayout from '../components/layouts/dashboard-layout'
 import Webcam from 'react-webcam'
 
@@ -45,6 +45,21 @@ export default function Tool() {
         //     body
         // })
     }
+
+    const renderCamera = useMemo(() => (
+        <Webcam
+            audio={false}
+            height={1540}
+            ref={webcamRef}
+            width={1540}
+            screenshotFormat="image/jpeg"
+            videoConstraints={{
+                width: 1540,
+                height: 1540,
+                facingMode: 'user'
+            }}
+        />
+    ), [])
 
     const chooseAgain = () => {
         setImage(null)
@@ -108,19 +123,8 @@ export default function Tool() {
                                     Take Photo
                                 </button>
                             </div>
-                            <div className="md:min-h-fit min-h-[500px] h-[fit] pb-2 bg-violet-500">
-                                <Webcam
-                                    audio={false}
-                                    height={1540}
-                                    ref={webcamRef}
-                                    width={1540}
-                                    screenshotFormat="image/jpeg"
-                                    videoConstraints={{
-                                        width: 1540,
-                                        height: 1540,
-                                        facingMode: 'user'
-                                    }}
-                                />
+                            <div className="h-[fit] pb-2 bg-violet-500">
+                                {photoBoothMode && renderCamera}
                             </div>
                         </div>}</> : <div className="flex flex-col xl:w-[calc(100%-24rem)] lg:w-[calc(100%-20rem)] md:w-[calc(100%-18rem)] w-full">
                             <div className="p-10 h-full">
