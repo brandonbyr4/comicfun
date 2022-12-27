@@ -23,6 +23,13 @@ The easiest way to start working with ComicFun locally is to create a fork & clo
   npm run dev
 ```
 
+#### Environment Variabes
+If you want to use certain features like Google Analytics, it requires an environment variable to configure.  Create a file called ".env.local" in development, and set them in your web host during development.  Note that leaving this out will not break the server, it will simply not enable these features.
+```
+  GOOGLE_ANALYTICS_GID=G-XXXXXXXXXX
+  MICROSOFT_CLARITY_ID=XXXXXXXXXX
+```
+
 #### Contributing
 Everyone is enouradged to contribute to ComicFun!  Create a fork, and open a pull request for a change that you feel is necessary. If you are interested in contributing to this project, and don't know where to start, start with the [Contributing Guide](https://github.com/brandonbyr4/comicfun/blob/main/CONTRIBUTING.md).
 
