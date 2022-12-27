@@ -1,11 +1,12 @@
 import Link from 'next/link'
 import { useState } from 'react'
+import SocialShare from '../social-share'
 import MobileMenu from './mobile-menu'
 
 export default function DashboardSidebar () {
     const [menuHover, setMenuHover]= useState(false)
 
-    return <div className="flex md:flex-col md:h-auto h-[81px] lg:w-72 md:w-60 md:items-start items-center justify-between md:border-r md:border-b-0 border-b border-gray-300">
+    return <div className="relative flex md:flex-col md:h-auto h-[81px] lg:w-72 md:w-60 md:items-start items-center justify-between md:border-r md:border-b-0 border-b border-gray-300">
         <div className="w-full">
             <div className="md:px-6 px-3 py-3 md:border-b border-gray-300">
                 <Link href="/" className="text-2xl font-semibold text-gray-900 focus:ring-2 ring-violet-500">
@@ -40,9 +41,7 @@ export default function DashboardSidebar () {
                 </a>
             </div>
         </div>
-        <svg className="md:w-8 md:h-8 w-6 h-6 md:m-8 text-violet-500 cursor-pointer" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 103.935 2.186 2.25 2.25 0 00-3.935-2.186zm0-12.814a2.25 2.25 0 103.933-2.185 2.25 2.25 0 00-3.933 2.185z" />
-        </svg>
+        <SocialShare />
         <div className="md:hidden block ml-4 mr-3">
             <MobileMenu />
         </div>
