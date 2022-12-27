@@ -15,7 +15,6 @@ ComicFun is an open source photo app that turns your profile picture into a cart
 ComicFun is a fun and easy to use, web based cartoon photo tool.  It works by taking a photo in the photo booth, or uploading an existing photo, and transforming it into a cartoonified portrait.  To try this for yourself, simply go to [comicfun.app/tool](https://www.comicfun.app/tool).  If you are interested in running this software on your own servers, create a fork & clone of the repo.  Continue reading "Getting Started" for details on how to launch the project.  Certain features may be unavailable until you specify enviroment variables.
 
 #### Getting Started
-
 The easiest way to start working with ComicFun locally is to create a fork & clone of the project.  Press the fork button, then type "git clone" and paste the forked link into your terminal.  Run the following commands from your new local directory:
 ```
   npm install
@@ -23,3 +22,9 @@ The easiest way to start working with ComicFun locally is to create a fork & clo
 ```
   npm run dev
 ```
+
+#### Contributing
+Everyone is enouradged to contribute to ComicFun!  Create a fork, and open a pull request for a change that you feel is necessary. If you are interested in contributing to this project, and don't know where to start, start with the [Contributing Guide](https://github.com/brandonbyr4/comicfun/blob/main/CONTRIBUTING.md).
+
+#### License
+License - [MIT](https://github.com/brandonbyr4/comicfun/blob/main/LICENSE.txt)
