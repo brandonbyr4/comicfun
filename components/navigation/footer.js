@@ -55,7 +55,7 @@ export default function Footer () {
                     This app uses anaytlics to optimize performance.  {!cookiesDisabled ? <span>
                         To opt out of non-essential cookies, click <button aria-label="gdpr-link" onClick={() => gdprUnsubscribe()} className="hover:underline">here</button>.
                     </span> : <span>
-                        Non-essential cookies, including performance are currently disabled.  Reload the app to enable this feature.
+                        Non-essential cookies, including analytics are currently disabled.  Reload the app to enable this feature.
                     </span>}
                 </p>
             </div>
