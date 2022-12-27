@@ -1,6 +1,15 @@
-import Link from "next/link"
+import Link from 'next/link'
+import { useState } from 'react'
 
 export default function Footer () {
+    const [cookiesDisabled, setCookiesDisabled] = useState(null)
+
+    const gdprUnsubscribe = () => {
+        window['ga-disable-GA_MEASUREMENT_ID'] = true
+        setCookiesDisabled(true)
+        alert("Disabled non-essential cookies.")
+    }
+
     return <footer className="px-3">
         <div className="grid md:grid-cols-2 gap-8 max-w-screen-xl mx-auto md:py-24 py-14">
             <div>
@@ -38,9 +47,18 @@ export default function Footer () {
                     </li>
                 </ul>
             </div>
-            <p className="text-gray-500">
-                © 2022 ComicFun Open Source Software.  All Rights Reserved
-            </p>
+            <div>
+                <p className="text-xs text-gray-500 mb-2">
+                    © 2022 ComicFun Open Source Software.  All Rights Reserved
+                </p>
+                <p className="text-xs text-gray-500">
+                    This app uses anaytlics to optimize performance.  {!cookiesDisabled ? <span>
+                        To opt out of non-essential cookies, click <button aria-label="gdpr-link" onClick={() => gdprUnsubscribe()} className="hover:underline">here</button>.
+                    </span> : <span>
+                        Non-essential cookies, including performance are currently disabled.  Reload the app to enable this feature.
+                    </span>}
+                </p>
+            </div>
         </div>
     </footer>
 }
