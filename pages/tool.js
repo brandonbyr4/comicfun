@@ -1,8 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { useState, useRef, useMemo }  from 'react'
+import { useState, useRef, useEffect }  from 'react'
 import DashboardLayout from '../components/layouts/dashboard-layout'
-import Webcam from 'react-webcam'
 
 export default function Tool() {
     const [photoBoothMode, setPhotoBoothMode] = useState(false)
@@ -10,17 +9,34 @@ export default function Tool() {
     const [imageURL, setImageURL] = useState(null)
     const [quality, setQuality] = useState(null)
     const [fileType, setFileType] = useState(null)
-    const webcamRef = useRef(null)
+    const videoRef = useRef(null)
+    const canvasRef = useRef(null)
+    
+    useEffect(() => {
+        const getUserMedia = async () => {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({video: true})
+                videoRef.current.srcObject = stream
+            } catch (err) {
+                console.log(err)
+            }
+        }
+        getUserMedia()
+    }, [photoBoothMode])
 
     const takeSelfie = () => {
-        const photoSrc = webcamRef.current.getScreenshot()
-        if(photoSrc) {
-            setImage("xyz")
-            setImageURL(photoSrc)
-            setPhotoBoothMode(false)
-        } else {
-            console.log("Error, camera is loading...")
-        }
+        // canvasRef.current.getContext("2d").drawImage(videoRef, 0, 0, 640, 480)
+
+        alert("Coming soon!")
+
+        // const photoSrc = webcamRef.current.getScreenshot()
+        // if(photoSrc) {
+        //     setImage("xyz")
+        //     setImageURL(photoSrc)
+        //     setPhotoBoothMode(false)
+        // } else {
+        //     console.log("Error, camera is loading...")
+        // }
     }
     
 
@@ -45,21 +61,6 @@ export default function Tool() {
         //     body
         // })
     }
-
-    const renderCamera = useMemo(() => (
-        <Webcam
-            audio={false}
-            height={1540}
-            ref={webcamRef}
-            width={1540}
-            screenshotFormat="image/jpeg"
-            videoConstraints={{
-                width: 1540,
-                height: 1540,
-                facingMode: 'user'
-            }}
-        />
-    ), [])
 
     const chooseAgain = () => {
         setImage(null)
@@ -124,7 +125,7 @@ export default function Tool() {
                                 </button>
                             </div>
                             <div className="h-[fit] pb-2 bg-violet-500">
-                                {photoBoothMode && renderCamera}
+                                <video ref={videoRef} autoPlay />
                             </div>
                         </div>}</> : <div className="flex flex-col xl:w-[calc(100%-24rem)] lg:w-[calc(100%-20rem)] md:w-[calc(100%-18rem)] w-full">
                             <div className="p-10 h-full">
