@@ -35,7 +35,7 @@ export default function HowItWorks() {
                                 </h1>
                                 <ul className="grid md:grid-cols-3 gap-8">
                                     <li className="flex flex-col justify-between md:gap-8 gap-2">
-                                        <div className="max-w-xs mx-auto md:p-10 p-8 mt-4 -mb-4">
+                                        <div className="max-w-xs mx-auto md:p-10 p-8 md:mt-4 md:-mb-4">
                                             <Image src={user} alt="Feature preview" />
                                         </div>
                                         <div>
