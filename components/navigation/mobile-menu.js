@@ -48,7 +48,7 @@ export default function MobileMenu () {
                     </Link>
                 </li>
                 <li>
-                    <Link href="/" className="block p-3 hover:bg-gray-100">
+                    <Link href="/how-it-works" className="block p-3 hover:bg-gray-100">
                         How It Works
                     </Link>
                 </li>

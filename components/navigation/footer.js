@@ -26,7 +26,7 @@ export default function Footer () {
                         </Link>
                     </li>
                     <li>
-                        <Link href="/" className="font-semibold text-gray-900">
+                        <Link href="/how-it-works" className="font-semibold text-gray-900">
                             How It Works
                         </Link>
                     </li>

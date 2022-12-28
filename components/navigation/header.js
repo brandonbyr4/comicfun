@@ -16,7 +16,7 @@ export default function Header () {
                         </Link>
                     </li>
                     <li>
-                        <Link href="/" className="underline-offset-2 decoration-2 hover:underline">
+                        <Link href="/how-it-works" className="underline-offset-2 decoration-2 hover:underline">
                             How It Works
                         </Link>
                     </li>
