@@ -54,16 +54,24 @@ export default function Tool() {
     }
 
     const uploadToServer = async (e) => {
-        e.preventDefault()
-        alert("Coming soon!")
+        if(image) {
+            e.preventDefault()
 
-        // Send to backend code below here
-        // const body = new FormData()
-        // body.append("file", image)
-        // const response = await fetch("/api/file", {
-        //     method: "POST",
-        //     body
-        // })
+            const body = new FormData()
+            body.append("file", image)
+            const response = await fetch("/api/file", {
+                method: "POST",
+                body
+            })
+            if(response.status === 200) {
+                // Download photo from backend here
+                alert("Coming soon!")
+            } else {
+                alert("Something went wrong.  Please report this issue on Github.")
+            }
+        } else {
+            alert("Take or upload a photo to begin.")
+        }
     }
 
     const chooseAgain = () => {
