@@ -10,33 +10,29 @@ export default function Tool() {
     const [quality, setQuality] = useState(null)
     const [fileType, setFileType] = useState(null)
     const videoRef = useRef(null)
-    const canvasRef = useRef(null)
     
-    useEffect(() => {
-        const getUserMedia = async () => {
-            try {
-                const stream = await navigator.mediaDevices.getUserMedia({video: true})
-                videoRef.current.srcObject = stream
-            } catch (err) {
-                console.log(err)
-            }
+    const getUserMedia = async () => {
+        try {
+            const stream = await navigator.mediaDevices.getUserMedia({video: true})
+            videoRef.current.srcObject = stream
+        } catch (err) {
+            console.log(err)
         }
+    }
+
+    useEffect(() => {
         getUserMedia()
     }, [photoBoothMode])
 
     const takeSelfie = () => {
-        // canvasRef.current.getContext("2d").drawImage(videoRef, 0, 0, 640, 480)
+        var canvas = document.createElement("canvas")
+        canvas.width = videoRef.current.clientWidth
+        canvas.height = videoRef.current.clientHeight
+        canvas.getContext("2d").drawImage(videoRef.current, 0, 0, canvas.width, canvas.height)
+        const imgUrl = canvas.toDataURL()
 
-        alert("Coming soon!")
-
-        // const photoSrc = webcamRef.current.getScreenshot()
-        // if(photoSrc) {
-        //     setImage("xyz")
-        //     setImageURL(photoSrc)
-        //     setPhotoBoothMode(false)
-        // } else {
-        //     console.log("Error, camera is loading...")
-        // }
+        setImage("GET FILE HERE, last client side...")
+        setImageURL(imgUrl)
     }
     
 
@@ -65,6 +61,7 @@ export default function Tool() {
     const chooseAgain = () => {
         setImage(null)
         setImageURL(null)
+        getUserMedia()
     }
 
     const handleQuality = (e) => {
@@ -115,19 +112,21 @@ export default function Tool() {
                                     <input id="upload-photo" type="file" accept="image/png, image/jpeg" onChange={uploadToClient} className="hidden" />
                                 </div>
                             </label>
-                        </div> : <div className="flex flex-col xl:w-[calc(100%-24rem)] lg:w-[calc(100%-20rem)] md:w-[calc(100%-18rem)] w-full overflow-hidden" >
-                            <div className="flex h-full w-full">
-                                <button aria-label="back" onClick={() => setPhotoBoothMode(false)} className="px-4 py-4 bg-white text-gray-900 hover:bg-gray-100 border-r border-gray-300 transition">
-                                    Back
-                                </button>
-                                <button aria-label="back" onClick={() => takeSelfie()} className="w-full px-4 py-4 text-gray-900 hover:bg-gray-100 transition">
-                                    Take Photo
-                                </button>
+                        </div> : <>
+                            <div className="flex flex-col xl:w-[calc(100%-24rem)] lg:w-[calc(100%-20rem)] md:w-[calc(100%-18rem)] w-full overflow-hidden" >
+                                <div className="flex h-full w-full">
+                                    <button aria-label="back" onClick={() => setPhotoBoothMode(false)} className="px-4 py-4 bg-white text-gray-900 hover:bg-gray-100 border-r border-gray-300 transition">
+                                        Back
+                                    </button>
+                                    <button aria-label="back" onClick={() => takeSelfie()} className="w-full px-4 py-4 text-gray-900 hover:bg-gray-100 transition">
+                                        Take Photo
+                                    </button>
+                                </div>
+                                <div className="h-[fit] pb-2 bg-violet-500">
+                                    <video id="video" ref={videoRef} className="w-full h-full" autoPlay />
+                                </div>
                             </div>
-                            <div className="h-[fit] pb-2 bg-violet-500">
-                                <video ref={videoRef} autoPlay />
-                            </div>
-                        </div>}</> : <div className="flex flex-col xl:w-[calc(100%-24rem)] lg:w-[calc(100%-20rem)] md:w-[calc(100%-18rem)] w-full">
+                        </>}</> : <div className="flex flex-col xl:w-[calc(100%-24rem)] lg:w-[calc(100%-20rem)] md:w-[calc(100%-18rem)] w-full">
                             <div className="p-10 h-full">
                                 <h4 className="text-3xl font-semibold text-gray-900 mb-4">
                                     Image uploaded
