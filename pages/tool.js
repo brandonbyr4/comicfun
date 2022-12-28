@@ -67,7 +67,7 @@ export default function Tool() {
                 // Download photo from backend here
                 alert("Coming soon!")
             } else {
-                alert("Something went wrong.  Please report this issue on Github.")
+                alert("Something went wrong.  If this issue persists, please report it on Github.")
             }
         } else {
             alert("Take or upload a photo to begin.")
