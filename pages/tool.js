@@ -25,14 +25,22 @@ export default function Tool() {
     }, [photoBoothMode])
 
     const takeSelfie = () => {
-        var canvas = document.createElement("canvas")
+        const canvas = document.createElement("canvas")
         canvas.width = videoRef.current.clientWidth
         canvas.height = videoRef.current.clientHeight
         canvas.getContext("2d").drawImage(videoRef.current, 0, 0, canvas.width, canvas.height)
         const imgUrl = canvas.toDataURL()
 
-        setImage("GET FILE HERE, last client side...")
         setImageURL(imgUrl)
+        const bytes = imgUrl.split(',')[0].indexOf('base64') >= 0 && imgUrl.split(',')[1]
+        const mime = imgUrl.split(',')[0].split(':')[1].split(';')[0]
+        const max = bytes.length
+        let ia = new Uint8Array(max)
+        for (let i = 0; i < max; i++) {
+            ia[i] = bytes.charCodeAt(i)
+        }
+        const i = new File([ia], 'upload.jpg', { type: mime })
+        setImage(i)
     }
     
 
