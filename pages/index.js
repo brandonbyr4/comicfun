@@ -29,7 +29,7 @@ export default function Home() {
                     <Link href="/tool" className="inline-block px-8 py-4 bg-violet-500 hover:bg-violet-400 text-white rounded transition whitespace-nowrap">
                       Launch Tool
                     </Link>
-                    <Link href="/" className="inline-block px-8 py-4 text-gray-900 underline-offset-2 decoration-2 rounded hover:underline whitespace-nowrap">
+                    <Link href="/how-it-works" className="inline-block px-8 py-4 text-gray-900 underline-offset-2 decoration-2 rounded hover:underline whitespace-nowrap">
                       How It Works
                     </Link>
                   </div>
