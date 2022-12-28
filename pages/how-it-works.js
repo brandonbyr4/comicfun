@@ -88,7 +88,7 @@ export default function HowItWorks() {
                                 Launching the app
                             </p>
                             {activeGuide === "launching" && <p className="text-gray-700 mt-2">
-                                Click "Launch Tool" inside the menu, or portrait tool.  From here, you will be redirected to <Link href="/tool" className="text-blue-500 underline">comifcun.app/tool</Link>.
+                                Click &quot;Launch Tool&quot; inside the menu, or portrait tool.  From here, you will be redirected to <Link href="/tool" className="text-blue-500 underline">comifcun.app/tool</Link>.
                             </p>}
                         </div>
                         <div className="!w-6 !h-6">
@@ -105,7 +105,7 @@ export default function HowItWorks() {
                                 Uploading a photo
                             </p>
                             {activeGuide === "uploading" && <p className="text-gray-700 mt-2">
-                                Uploading a photo to ComicFun is possible in two ways.  From the tool, drag a photo to the "upload" box, or click the section to open your device storage to choose a photo.
+                                Uploading a photo to ComicFun is possible in two ways.  From the tool, drag a photo to the &quot;upload&quot; box, or click the section to open your device storage to choose a photo.
                             </p>}
                         </div>
                         <div className="!w-6 !h-6">
@@ -122,7 +122,7 @@ export default function HowItWorks() {
                                 Using the photo booth
                             </p>
                             {activeGuide === "booth" && <p className="text-gray-700 mt-2">
-                                You can also take a photo immediately in the photo booth.  Click "take a photo" and your device camera will open to take a photo.
+                                You can also take a photo immediately in the photo booth.  Click &quot;take a photo&quot; and your device camera will open to take a photo.
                             </p>}
                         </div>
                         <div className="!w-6 !h-6">
@@ -156,7 +156,7 @@ export default function HowItWorks() {
                                 Exporting cartoonified photo
                             </p>
                             {activeGuide === "export" && <p className="text-gray-700 mt-2">
-                                Once you have uploaded a photo, and configured the settings, you can now click "generate".  This will apply the ComicFun cartoonify filter and return the new photo, downloaded to your device.
+                                Once you have uploaded a photo, and configured the settings, you can now click &quot;generate&quot;.  This will apply the ComicFun cartoonify filter and return the new photo, downloaded to your device.
                             </p>}
                         </div>
                         <div className="!w-6 !h-6">
