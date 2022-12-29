@@ -42,13 +42,137 @@ export default function Tool() {
         return (newFile)
     }
 
+    const posterize = (imgData, levels) => {
+        var numLevels = parseInt(levels,10) || 1
+        var data = imgData.data
+      
+        numLevels = Math.max(2, Math.min(256, numLevels))
+      
+        var numAreas = 256 / numLevels
+        var numValues = 255 / (numLevels-1)
+      
+        var rect = imgData
+        var w = rect.width
+        var h = rect.height
+        var w4 = w*4
+        var y = h
+        do {
+          var offsetY = (y-1)*w4
+          var x = w
+           do {
+            var offset = offsetY + (x-1)*4
+      
+            var r = numValues * ((data[offset] / numAreas)>>0)
+            var g = numValues * ((data[offset+1] / numAreas)>>0)
+            var b = numValues * ((data[offset+2] / numAreas)>>0)
+    
+            if (r > 255) r = 255
+            if (g > 255) g = 255
+            if (b > 255) b = 255
+      
+            data[offset] = r
+            data[offset+1] = g
+            data[offset+2] = b
+      
+          } while (--x)
+        } while (--y)
+        return imgData
+    }
+
+    const oilPaintEffect = (canvas, radius, intensity) => {
+        const width = canvas.width
+        const height = canvas.height
+        const pixData = canvas.getContext("2d").getImageData(0, 0, width, height).data
+           
+        const destCanvas = document.createElement("canvas")
+        let dCtx = destCanvas.getContext("2d"),
+        pixelIntensityCount = [];
+        
+        destCanvas.width = width;
+        destCanvas.height = height;
+        
+        var destImageData = dCtx.createImageData(width, height),
+            destPixData = destImageData.data,
+            intensityLUT = [],
+            rgbLUT = [];
+        
+        for (var y = 0; y < height; y++) {
+            intensityLUT[y] = [];
+            rgbLUT[y] = [];
+            for (var x = 0; x < width; x++) {
+                var idx = (y * width + x) * 4,
+                    r = pixData[idx],
+                    g = pixData[idx + 1],
+                    b = pixData[idx + 2],
+                    avg = (r + g + b) / 3;
+                
+                intensityLUT[y][x] = Math.round((avg * intensity) / 255);
+                rgbLUT[y][x] = {
+                    r: r,
+                    g: g,
+                    b: b
+                };
+            }
+        }
+        
+        
+        for (y = 0; y < height; y++) {
+            for (x = 0; x < width; x++) {
+                pixelIntensityCount = [];
+                
+                // Find intensities of nearest pixels within radius.
+                for (var yy = -radius; yy <= radius; yy++) {
+                    for (var xx = -radius; xx <= radius; xx++) {
+                      if (y + yy > 0 && y + yy < height && x + xx > 0 && x + xx < width) {
+                          var intensityVal = intensityLUT[y + yy][x + xx];
+    
+                          if (!pixelIntensityCount[intensityVal]) {
+                              pixelIntensityCount[intensityVal] = {
+                                  val: 1,
+                                  r: rgbLUT[y + yy][x + xx].r,
+                                  g: rgbLUT[y + yy][x + xx].g,
+                                  b: rgbLUT[y + yy][x + xx].b
+                              }
+                          } else {
+                              pixelIntensityCount[intensityVal].val++;
+                              pixelIntensityCount[intensityVal].r += rgbLUT[y + yy][x + xx].r;
+                              pixelIntensityCount[intensityVal].g += rgbLUT[y + yy][x + xx].g;
+                              pixelIntensityCount[intensityVal].b += rgbLUT[y + yy][x + xx].b;
+                          }
+                      }
+                    }
+                }
+                
+                pixelIntensityCount.sort(function (a, b) {
+                    return b.val - a.val;
+                });
+                
+                var curMax = pixelIntensityCount[0].val,
+                    dIdx = (y * width + x) * 4;
+                
+                destPixData[dIdx] = ~~ (pixelIntensityCount[0].r / curMax);
+                destPixData[dIdx + 1] = ~~ (pixelIntensityCount[0].g / curMax);
+                destPixData[dIdx + 2] = ~~ (pixelIntensityCount[0].b / curMax);
+                destPixData[dIdx + 3] = 255;
+            }
+        }
+        
+        canvas.getContext("2d").putImageData(destImageData, 0, 0);
+    }
+
     const takeSelfie = () => {
         const canvas = document.createElement("canvas")
         canvas.width = videoRef.current.clientWidth
         canvas.height = videoRef.current.clientHeight
         canvas.getContext("2d").drawImage(videoRef.current, 0, 0, canvas.width, canvas.height)
-        const imgUrl = canvas.toDataURL()
 
+        // Applying filters
+        let imgData = canvas.getContext("2d").getImageData(0, 0, canvas.width, canvas.height)
+        canvas.getContext("2d").putImageData(posterize(imgData, 10), 0, 0)
+        oilPaintEffect(canvas, 4, 25)
+        
+        // Saving to preview
+        const imgUrl = canvas.toDataURL()
         setImageURL(imgUrl)
         setImage(convertImageToFile(imgUrl))
     }
@@ -64,8 +188,14 @@ export default function Tool() {
                 canvas.width = tempImage.width
                 canvas.height = tempImage.height
                 canvas.getContext("2d").drawImage(tempImage, 0, 0, canvas.width, canvas.height)
+                
+                // Applying filters
+                let imgData = canvas.getContext("2d").getImageData(0, 0, canvas.width, canvas.height)
+                canvas.getContext("2d").putImageData(posterize(imgData, 10), 0, 0)
+                oilPaintEffect(canvas, 4, 25)
+                
+                // Saving to preview
                 const imgUrl = canvas.toDataURL()
-
                 setImageURL(imgUrl)
                 setImage(convertImageToFile(imgUrl))
             }
@@ -158,7 +288,7 @@ export default function Tool() {
                         <div className="relative xl:w-96 lg:w-80 md:w-72 w-full bg-gray-900">
                             <form onSubmit={(event) => downloadPortrait(event)} className="flex flex-col justify-between h-full md:pt-8 md:pb-40 py-14 px-8 md:space-y-6 space-y-16">
                                 <h3 className="text-2xl font-semibold text-white">
-                                    Generate and save
+                                    Export
                                 </h3>
                                 <div>
                                     <p className="text-xl text-white mb-2">
@@ -178,8 +308,8 @@ export default function Tool() {
                                 </div>
                                 <div>
                                     <input type="email" placeholder="your email adress..." className="bg-gray-900 text-white border-b border-gray-500 mb-6" required />
-                                    <button aria-label="Generate Portrait image" type="submit" className="w-full p-3 bg-violet-500 hover:bg-violet-400 text-white text-center rounded transition">
-                                        Generate Portrait
+                                    <button aria-label="Download Portrait image" type="submit" className="w-full p-3 bg-violet-500 hover:bg-violet-400 text-white text-center rounded transition">
+                                        Download Portrait
                                     </button>
                                 </div>
                             </form>
