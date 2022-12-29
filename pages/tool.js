@@ -7,11 +7,10 @@ export default function Tool() {
     const [photoBoothMode, setPhotoBoothMode] = useState(false)
     const [image, setImage] = useState(null)
     const [imageURL, setImageURL] = useState(null)
-    const [quality, setQuality] = useState(null)
     const [fileType, setFileType] = useState(null)
     const videoRef = useRef(null)
     
-    const getUserMedia = async () => {
+    const loadPhotoBooth = async () => {
         try {
             const stream = await navigator.mediaDevices.getUserMedia({video: true})
             videoRef.current.srcObject = stream
@@ -21,8 +20,27 @@ export default function Tool() {
     }
 
     useEffect(() => {
-        getUserMedia()
+        loadPhotoBooth()
     }, [photoBoothMode])
+
+    
+    const convertImageToFile = (imgUrl) => {
+        const bytes = imgUrl.split(',')[0].indexOf('base64') >= 0 && imgUrl.split(',')[1]
+        const mime = imgUrl.split(',')[0].split(':')[1].split(';')[0]
+        const max = bytes.length
+        let ia = new Uint8Array(max)
+        let fileType = ""
+        for (let i = 0; i < max; i++) {
+            ia[i] = bytes.charCodeAt(i)
+        }
+        if(mime.includes("png")) {
+            fileType = ".png"
+        } else {
+            fileType = ".jpg"
+        }
+        const newFile = new File([ia], `upload${fileType}`, { type: mime })
+        return (newFile)
+    }
 
     const takeSelfie = () => {
         const canvas = document.createElement("canvas")
@@ -32,63 +50,42 @@ export default function Tool() {
         const imgUrl = canvas.toDataURL()
 
         setImageURL(imgUrl)
-        const bytes = imgUrl.split(',')[0].indexOf('base64') >= 0 && imgUrl.split(',')[1]
-        const mime = imgUrl.split(',')[0].split(':')[1].split(';')[0]
-        const max = bytes.length
-        let ia = new Uint8Array(max)
-        for (let i = 0; i < max; i++) {
-            ia[i] = bytes.charCodeAt(i)
-        }
-        const i = new File([ia], 'upload.jpg', { type: mime })
-        setImage(i)
+        setImage(convertImageToFile(imgUrl))
     }
     
 
-    const uploadToClient = (event) => {
+    const localUpload = (event) => {
         if (event.target.files && event.target.files[0]) {
             const i = event.target.files[0]
+            const canvas = document.createElement("canvas")
+            const tempImage = document.createElement('img')
+            tempImage.src = URL.createObjectURL(i)
+            tempImage.onload = function() {
+                canvas.width = tempImage.width
+                canvas.height = tempImage.height
+                canvas.getContext("2d").drawImage(tempImage, 0, 0, canvas.width, canvas.height)
+                const imgUrl = canvas.toDataURL()
 
-            setImage(i)
-            setImageURL(URL.createObjectURL(i))
+                setImageURL(imgUrl)
+                setImage(convertImageToFile(imgUrl))
+            }
         }
     }
 
-    const uploadToServer = async (e) => {
-        if(image) {
-            e.preventDefault()
-
-            const body = new FormData()
-            body.append("file", image)
-            const response = await fetch("/api/file", {
-                method: "POST",
-                body
-            })
-            if(response.status === 200) {
-                // Download photo from backend here
-                alert("Coming soon!")
-            } else {
-                alert("Something went wrong.  If this issue persists, please report it on Github.")
-            }
-        } else {
-            alert("Take or upload a photo to begin.")
-        }
+    const downloadPortrait = (event) => {
+        event.preventDefault()
+        alert("Coming soon!")
     }
 
     const chooseAgain = () => {
         setImage(null)
         setImageURL(null)
-        getUserMedia()
+        loadPhotoBooth()
     }
 
-    const handleQuality = (e) => {
-        e.preventDefault()
-        setQuality(e.target.value)
-        alert("Coming soon!")
-    }
-
-    const handleFileType = (e) => {
-        e.preventDefault()
-        setFileType(e.target.value)
+    const handleFileType = (event) => {
+        event.preventDefault()
+        setFileType(event.target.value)
         alert("Coming soon!")
     }
 
@@ -125,7 +122,7 @@ export default function Tool() {
                                     <p className="text-gray-500">
                                         drag and drop an image here to upload automatically
                                     </p>
-                                    <input id="upload-photo" type="file" accept="image/png, image/jpeg" onChange={uploadToClient} className="hidden" />
+                                    <input id="upload-photo" type="file" accept="image/png, image/jpeg" onChange={localUpload} className="hidden" />
                                 </div>
                             </label>
                         </div> : <>
@@ -159,36 +156,22 @@ export default function Tool() {
                             </div>
                         </div>}
                         <div className="relative xl:w-96 lg:w-80 md:w-72 w-full bg-gray-900">
-                            <form onSubmit={(e) => uploadToServer(e)} className="flex flex-col justify-between h-full md:pt-8 md:pb-40 py-14 px-8 md:space-y-6 space-y-16">
+                            <form onSubmit={(event) => downloadPortrait(event)} className="flex flex-col justify-between h-full md:pt-8 md:pb-40 py-14 px-8 md:space-y-6 space-y-16">
                                 <h3 className="text-2xl font-semibold text-white">
                                     Generate and save
                                 </h3>
                                 <div>
                                     <p className="text-xl text-white mb-2">
-                                        Quality
-                                    </p>
-                                    <div className="grid grid-cols-3 gap-4 text-center mb-8">
-                                        <button aria-label="1080px resolution" onClick={(e) => handleQuality(e)} type="button" value="1080" className="px-4 py-2 text-xs text-white bg-indigo-900 rounded cursor-pointer whitespace-nowrap">
-                                            1080<br className="xl:hidden block" />x 1080
-                                        </button>
-                                        <button aria-label="720px resolution" onClick={(e) => handleQuality(e)} type="button" value="720" className="px-4 py-2 text-xs text-white bg-indigo-900 rounded cursor-pointer whitespace-nowrap">
-                                            720<br className="xl:hidden block" />x 720
-                                        </button>
-                                        <button aria-label="480px resolution" onClick={(e) => handleQuality(e)} type="button" value="480" className="px-4 py-2 text-xs text-white bg-indigo-900 rounded cursor-pointer whitespace-nowrap">
-                                            480<br className="xl:hidden block" />x 480
-                                        </button>
-                                    </div>
-                                    <p className="text-xl text-white mb-2">
-                                        File
+                                        File type
                                     </p>
                                     <div className="grid grid-cols-3 gap-4 text-center">
-                                        <button aria-label="png file type" onClick={(e) => handleFileType(e)} type="button" value="PNG" className="px-4 py-2 text-white bg-indigo-900 rounded cursor-pointer">
+                                        <button aria-label="png file type" onClick={(event) => handleFileType(event)} type="button" value="PNG" className="px-4 py-2 text-white bg-indigo-900 rounded cursor-pointer">
                                             PNG
                                         </button>
-                                        <button aria-label="jpg file type" onClick={(e) => handleFileType(e)} type="button" value="JPG" className="px-4 py-2 text-white bg-indigo-900 rounded">
+                                        <button aria-label="jpg file type" onClick={(event) => handleFileType(event)} type="button" value="JPG" className="px-4 py-2 text-white bg-indigo-900 rounded">
                                             JPG
                                         </button>
-                                        <button aria-label="svg file type" onClick={(e) => handleFileType(e)} type="button" value="SVG" className="px-4 py-2 text-white bg-indigo-900 rounded">
+                                        <button aria-label="svg file type" onClick={(event) => handleFileType(event)} type="button" value="SVG" className="px-4 py-2 text-white bg-indigo-900 rounded">
                                             SVG
                                         </button>
                                     </div>
