@@ -7,7 +7,6 @@ export default function Tool() {
     const [photoBoothMode, setPhotoBoothMode] = useState(false)
     const [image, setImage] = useState(null)
     const [imageURL, setImageURL] = useState(null)
-    const [fileType, setFileType] = useState(null)
     const videoRef = useRef(null)
     
     const loadPhotoBooth = async () => {
@@ -162,6 +161,7 @@ export default function Tool() {
 
     const takeSelfie = () => {
         const canvas = document.createElement("canvas")
+        canvas.setAttribute("id", "export-canvas")
         canvas.width = videoRef.current.clientWidth
         canvas.height = videoRef.current.clientHeight
         canvas.getContext("2d").drawImage(videoRef.current, 0, 0, canvas.width, canvas.height)
@@ -183,6 +183,7 @@ export default function Tool() {
             const i = event.target.files[0]
             const canvas = document.createElement("canvas")
             const tempImage = document.createElement('img')
+            canvas.setAttribute("id", "export-canvas")
             tempImage.src = URL.createObjectURL(i)
             tempImage.onload = function() {
                 canvas.width = tempImage.width
@@ -204,19 +205,20 @@ export default function Tool() {
 
     const downloadPortrait = (event) => {
         event.preventDefault()
-        alert("Coming soon!")
+        if (image) {
+            let link = document.createElement("a")
+            link.download = "cartoonified"
+            link.href = imageURL
+            link.click()
+        } else {
+            alert("Please select a photo to begin.")
+        }
     }
 
     const chooseAgain = () => {
         setImage(null)
         setImageURL(null)
         loadPhotoBooth()
-    }
-
-    const handleFileType = (event) => {
-        event.preventDefault()
-        setFileType(event.target.value)
-        alert("Coming soon!")
     }
 
     return (
@@ -229,6 +231,9 @@ export default function Tool() {
                 <DashboardLayout content={
                     <div className="md:flex md:h-full">
                         {!image ? <>{!photoBoothMode ? <div className="flex flex-col xl:w-[calc(100%-24rem)] lg:w-[calc(100%-20rem)] md:w-[calc(100%-18rem)] w-full" >
+                            <p className="py-3 px-8 bg-violet-500 text-sm text-white">
+                                After selecting a photo, please allow up to 3-5 seconds for the filters to process.
+                            </p>
                             <label htmlFor="take-photo" className="flex justify-center items-center px-3 md:h-80 h-52 border-b border-gray-300 outline-gray-900 -outline-offset-2 hover:bg-gray-100 hover:outline-dotted cursor-pointer transition">
                                 <div className="text-center">
                                     <h1 className="md:text-3xl text-2xl font-semibold text-gray-900 mb-4">
@@ -286,26 +291,10 @@ export default function Tool() {
                             </div>
                         </div>}
                         <div className="relative xl:w-96 lg:w-80 md:w-72 w-full bg-gray-900">
-                            <form onSubmit={(event) => downloadPortrait(event)} className="flex flex-col justify-between h-full md:pt-8 md:pb-40 py-14 px-8 md:space-y-6 space-y-16">
+                            <form onSubmit={(event) => downloadPortrait(event)} className="flex flex-col justify-between md:max-h-96 h-full md:py-8 py-14 px-8 md:space-y-6 space-y-16">
                                 <h3 className="text-2xl font-semibold text-white">
                                     Export
                                 </h3>
-                                <div>
-                                    <p className="text-xl text-white mb-2">
-                                        File type
-                                    </p>
-                                    <div className="grid grid-cols-3 gap-4 text-center">
-                                        <button aria-label="png file type" onClick={(event) => handleFileType(event)} type="button" value="PNG" className="px-4 py-2 text-white bg-indigo-900 rounded cursor-pointer">
-                                            PNG
-                                        </button>
-                                        <button aria-label="jpg file type" onClick={(event) => handleFileType(event)} type="button" value="JPG" className="px-4 py-2 text-white bg-indigo-900 rounded">
-                                            JPG
-                                        </button>
-                                        <button aria-label="svg file type" onClick={(event) => handleFileType(event)} type="button" value="SVG" className="px-4 py-2 text-white bg-indigo-900 rounded">
-                                            SVG
-                                        </button>
-                                    </div>
-                                </div>
                                 <div>
                                     <input type="email" placeholder="your email adress..." className="bg-gray-900 text-white border-b border-gray-500 mb-6" required />
                                     <button aria-label="Download Portrait image" type="submit" className="w-full p-3 bg-violet-500 hover:bg-violet-400 text-white text-center rounded transition">
