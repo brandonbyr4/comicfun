@@ -11,6 +11,8 @@ const sendinblueContact = (email, list) => {
     createContact.email = email
     createContact.listIds = [list]
 
+    console.log(process.env.SENDINBLUE_API_KEY)
+
     apiInstanceContacts.createContact(createContact).then(function(data) {
         return true
     }, function(error) {
@@ -22,11 +24,11 @@ const sendinblueContact = (email, list) => {
 export default function handler(req, res) {
 
     const body = req.body
-    try {
-        sendinblueContact(body.email, body.list)
-    } catch {
-        //
-    }
+    // try {
+    sendinblueContact(body.email, body.list)
+    // } catch {
+    //     //
+    // }
 
     res.status(200).json({ 'Status': 'Success' })
 }
