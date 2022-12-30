@@ -1,32 +1,18 @@
-import { ApiClient, ContactsApi, CreateContact } from "sib-api-v3-sdk"
-
-const defaultClient = ApiClient.instance
-const apiKey = defaultClient.authentications['api-key']
-apiKey.apiKey = process.env.SENDINBLUE_API_KEY
-
-const apiInstanceContacts = new ContactsApi()
-const createContact = new CreateContact()
-
-const sendinblueContact = (email, list) => {
-    createContact.email = email
-    createContact.listIds = [list]
-
-    apiInstanceContacts.createContact(createContact).then(function(data) {
-        return true
-    }, function(error) {
-        console.error(error)
-        return false
-    })
-}
-
 export default function handler(req, res) {
-    const body = req.body
-    try {
-        sendinblueContact(body.email, body.list)
-    } catch {
-        //
-    }
-    const keykey = process.env.SENDINBLUE_API_KEY
+    const email = req.body.email
 
-    res.status(200).json({ 'Status': 'Success', 'yourKey': keykey })
+    fetch(`https://${process.env.MAILCHIMP_API_SERVER}.api.mailchimp.com/3.0/lists/${process.env.MAILCHIMP_AUDIENCE_ID}/members`, {
+        body: JSON.stringify({
+            email_address: email,
+            status: 'subscribed',
+        }),
+        headers: {
+            Authorization: `apikey ${process.env.MAILCHIMP_API_KEY}`,
+            'Content-Type': 'application/json',
+        },
+        method: 'POST',
+        }
+    )
+
+    res.status(200).json({ 'Status': 'Success' })
 }
