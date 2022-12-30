@@ -133,17 +133,17 @@ export default function HowItWorks() {
                                             </svg>}
                                         </div>
                                     </li>
-                                    <li onClick={() => handleActiveGuide("settings")} className="flex justify-between gap-2 w-full p-8 bg-gray-100 rounded cursor-pointer">
+                                    <li onClick={() => handleActiveGuide("filters")} className="flex justify-between gap-2 w-full p-8 bg-gray-100 rounded cursor-pointer">
                                         <div>
                                             <p className="md:text-lg text-gray-900">
-                                                Adjusting the settings
+                                                Applying filters
                                             </p>
-                                            {activeGuide === "settings" && <p className="text-gray-700 mt-2">
-                                                There are a few settings you can adjust to configure the output to your preferences.  Select which photo resolution, and file type you desire for the final export format.
+                                            {activeGuide === "filters" && <p className="text-gray-700 mt-2">
+                                                ComicFun applies a filter automatically when you upload a photo.  Preview the result right away before downloading.
                                             </p>}
                                         </div>
                                         <div className="!w-6 !h-6">
-                                            {activeGuide === "settings" ? <svg className="!w-6 !h-6 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
+                                            {activeGuide === "filters" ? <svg className="!w-6 !h-6 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
                                                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                                             </svg> : <svg className="!w-6 !h-6 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
                                                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />

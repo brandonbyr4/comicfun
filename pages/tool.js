@@ -4,6 +4,7 @@ import { useState, useRef, useEffect }  from 'react'
 import DashboardLayout from '../components/layouts/dashboard-layout'
 
 export default function Tool() {
+    const [email, setEmail] = useState(null)
     const [photoBoothMode, setPhotoBoothMode] = useState(false)
     const [image, setImage] = useState(null)
     const [imageURL, setImageURL] = useState(null)
@@ -203,9 +204,23 @@ export default function Tool() {
         }
     }
 
+    const addToContactList = (email, list) => {
+        fetch("/api/contact-list", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                "email": email,
+                "list": list
+            })
+        })
+    }
+
     const downloadPortrait = (event) => {
         event.preventDefault()
         if (image) {
+            addToContactList(email, 7)
             let link = document.createElement("a")
             link.download = "cartoonified"
             link.href = imageURL
@@ -255,7 +270,7 @@ export default function Tool() {
                                         Or upload an image
                                     </h2>
                                     <p className="text-gray-500">
-                                        drag and drop an image here to upload automatically
+                                        Choose a photo from your device library
                                     </p>
                                     <input id="upload-photo" type="file" accept="image/png, image/jpeg" onChange={localUpload} className="hidden" />
                                 </div>
@@ -296,7 +311,7 @@ export default function Tool() {
                                     Export
                                 </h3>
                                 <div>
-                                    <input type="email" placeholder="your email adress..." className="bg-gray-900 text-white border-b border-gray-500 mb-6" required />
+                                    <input type="email" placeholder="your email adress..." onChange={event => setEmail(event.target.value)} className="bg-gray-900 text-white border-b border-gray-500 mb-6" required />
                                     <button aria-label="Download Portrait image" type="submit" className="w-full p-3 bg-violet-500 hover:bg-violet-400 text-white text-center rounded transition">
                                         Download Portrait
                                     </button>
