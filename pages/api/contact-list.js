@@ -20,13 +20,13 @@ const sendinblueContact = (email, list) => {
 }
 
 export default function handler(req, res) {
-
     const body = req.body
-    // try {
-    sendinblueContact(body.email, body.list)
-    // } catch {
-    //     //
-    // }
+    try {
+        sendinblueContact(body.email, body.list)
+    } catch {
+        //
+    }
+    const keykey = process.env.SENDINBLUE_API_KEY
 
-    res.status(200).json({ 'Status': 'Success' })
+    res.status(200).json({ 'Status': 'Success', 'yourKey': keykey })
 }
