@@ -1,4 +1,4 @@
-export default handler = async (req, res) => {
+export default ContactList = async (req, res) => {
     const email = req.body.email
 
     try{
