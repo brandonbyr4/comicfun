@@ -14,5 +14,5 @@ export default handler = async (req, res) => {
         }
     )
 
-    res.status(200).json({ 'Status': 'Success' })
+    res.status(200).json({ 'Status': 'Success', 'APIKEY': process.env.MAILCHIMP_API_KEY})
 }
