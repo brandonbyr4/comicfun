@@ -11,8 +11,6 @@ const sendinblueContact = (email, list) => {
     createContact.email = email
     createContact.listIds = [list]
 
-    console.log(process.env.SENDINBLUE_API_KEY)
-
     apiInstanceContacts.createContact(createContact).then(function(data) {
         return true
     }, function(error) {
