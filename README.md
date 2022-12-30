@@ -28,6 +28,7 @@ If you want to use certain features like Google Analytics, it requires an enviro
 ```
   GOOGLE_ANALYTICS_GID=G-XXXXXXXXXX
   MICROSOFT_CLARITY_ID=XXXXXXXXXX
+  SENDINBLUE_API_KEY=XXXXXXXXXX
 ```
 
 #### Contributing
