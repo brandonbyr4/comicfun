@@ -204,15 +204,14 @@ export default function Tool() {
         }
     }
 
-    const addToContactList = (email, list) => {
+    const addToContactList = (email) => {
         fetch("/api/contact-list", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                "email": email,
-                "list": list
+                "email": email
             })
         })
     }
@@ -220,7 +219,7 @@ export default function Tool() {
     const downloadPortrait = (event) => {
         event.preventDefault()
         if (image) {
-            addToContactList(email, 7)
+            addToContactList(email)
             let link = document.createElement("a")
             link.download = "cartoonified"
             link.href = imageURL

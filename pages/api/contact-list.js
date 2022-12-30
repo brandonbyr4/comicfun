@@ -14,10 +14,8 @@ export default async function handler(req, res) {
             method: 'POST'
         })
 
-        res.status(200).json({ 'Status': 'Success', 'APIKEY': process.env.MAILCHIMP_API_KEY})
+        res.status(200).json({'Status': 'Success'})
     } catch (err) {
-        res.status(200).json({ 'Error': err})
+        res.status(500).json({'Error': err})
     }
-    
-    
 }
